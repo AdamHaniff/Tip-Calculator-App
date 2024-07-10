@@ -23,6 +23,7 @@ function CalculatorApp() {
   return (
     <div className="app">
       <Inputs />
+      <Calculate />
     </div>
   );
 }
@@ -30,22 +31,24 @@ function CalculatorApp() {
 function Inputs() {
   return (
     <div className="inputs">
-      <Bill />
+      <Input label="Bill" src="images/icon-dollar.svg" alt="Dollar icon" />
+      <TipSelection />
+      <Input
+        label="Number of People"
+        src="images/icon-person.svg"
+        alt="Person icon"
+      />
     </div>
   );
 }
 
-function Bill() {
+function Input({ label, src, alt }) {
   return (
-    <div className="bill">
-      <label className="bill__label">Bill</label>
-      <div className="bill__input-container">
-        <img
-          className="bill__dollar-icon"
-          src="images/icon-dollar.svg"
-          alt="Dollar icon"
-        />
-        <input className="bill__input" type="text" />
+    <div className="input">
+      <label className="input__label">{label}</label>
+      <div className="input__container">
+        <img className="input__icon" src={src} alt={alt} />
+        <input className="input__element" type="text" />
       </div>
     </div>
   );
@@ -59,12 +62,38 @@ function TipSelection() {
       <span className="tips__select-tip">Select Tip %</span>
       <div className="tips__container">
         {percentages.map((percentage) => (
-          <div key={percentage} className="tip">
+          <div key={percentage} className="tips__tip">
             {percentage}
           </div>
         ))}
         <input className="tips__custom-tip" type="text" placeholder="Custom" />
       </div>
+    </div>
+  );
+}
+
+function Calculate() {
+  return (
+    <div className="calculate">
+      <div className="calculate__labels">
+        <CalculateLabel label="Tip Amount" />
+        <CalculateLabel label="Total" />
+      </div>
+      <button className="calculate__reset-btn" type="button">
+        Reset
+      </button>
+    </div>
+  );
+}
+
+function CalculateLabel({ label }) {
+  return (
+    <div className="calculate__labels-value">
+      <div className="calculate__labels">
+        <span className="calculate__label">{label}</span>
+        <span className="calculate__sublabel">/ person</span>
+      </div>
+      <span className="calculate__value">$4.27</span>
     </div>
   );
 }

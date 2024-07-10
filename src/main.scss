@@ -1,1 +1,64 @@
+// ********* DESIGN SYSTEM *********
 
+// ************ COLORS ************
+$color-jagged-ice: #c5e4e7;
+$color-white: #fff;
+$color-greyish-turquoise: #5e7a7d;
+$color-black-squeeze: #f3f9fa;
+$color-sherpa-blue: #00474b;
+$color-sherpa-blue-35-percent: rgba(0, 71, 75, 0.35);
+$color-topaz: #26c2ae;
+$color-beetle-green: #547878;
+$color-regent-grey: #7f9d9f;
+$color-dark-aqua: #0d686d;
+$color-water-leaf: #9fe8df;
+$color-terra-cotta: #e17457;
+$color-sunrise-orange: #e17052;
+
+// ********** FONT-FAMILY **********
+$font-space-mono: "Space Mono", monospace;
+
+// ********* FONT-WEIGHTS *********
+$fw-700: 700;
+
+// ************* BASE *************
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  background: $color-jagged-ice;
+  font-family: $font-space-mono;
+  font-weight: $fw-700;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+// ******** MOBILE LAYOUTS ********
+
+// ********* 375px LAYOUT *********
+
+// ************ HEADER ************
+.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  margin-bottom: 4.086rem;
+  // CREATE SPACE BETWEEN HEADER AND APP USING FLEX GAP
+
+  &__logo {
+    display: block;
+  }
+}

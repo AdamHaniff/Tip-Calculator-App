@@ -1,1 +1,33 @@
-/*# sourceMappingURL=main.css.map */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  background: #c5e4e7;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  margin-bottom: 4.086rem;
+}
+.header__logo {
+  display: block;
+}/*# sourceMappingURL=main.css.map */
