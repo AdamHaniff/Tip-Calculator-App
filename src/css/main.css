@@ -22,12 +22,72 @@ body {
   height: 100%;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4.086rem;
+}
+
 .header {
   display: flex;
   justify-content: center;
   padding-top: 5rem;
-  margin-bottom: 4.086rem;
 }
 .header__logo {
   display: block;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  border-radius: 2.5rem 2.5rem 0 0;
+  background: #fff;
+  box-shadow: 0 3.2rem 4.3rem 0 rgba(79, 166, 175, 0.2);
+}
+
+.inputs {
+  padding: 3.2rem 3.2rem 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.input__label {
+  color: #5e7a7d;
+  font-size: 1.6rem;
+}
+.input__container {
+  position: relative;
+}
+.input__icon {
+  display: block;
+  position: absolute;
+  top: 1.687rem;
+  left: 1.926rem;
+}
+.input__element {
+  width: 100%;
+  height: 4.8rem;
+  border-radius: 0.5rem;
+  background: #f3f9fa;
+  border: 0.2rem solid transparent;
+  text-align: right;
+  padding-right: 1.7rem;
+  color: #00474b;
+  font-family: inherit;
+  font-size: 2.4rem;
+  font-weight: inherit;
+}
+.input__element::-moz-placeholder {
+  color: rgba(0, 71, 75, 0.35);
+}
+.input__element::placeholder {
+  color: rgba(0, 71, 75, 0.35);
+}
+.input__element:focus {
+  outline: none;
+  border: 0.2rem solid #26c2ae;
 }/*# sourceMappingURL=main.css.map */

@@ -48,7 +48,7 @@ function Input({ label, src, alt }) {
       <label className="input__label">{label}</label>
       <div className="input__container">
         <img className="input__icon" src={src} alt={alt} />
-        <input className="input__element" type="text" />
+        <input className="input__element" type="text" placeholder="0" />
       </div>
     </div>
   );
