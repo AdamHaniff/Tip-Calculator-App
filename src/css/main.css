@@ -44,10 +44,14 @@ body {
   border-radius: 2.5rem 2.5rem 0 0;
   background: #fff;
   box-shadow: 0 3.2rem 4.3rem 0 rgba(79, 166, 175, 0.2);
+  padding: 3.2rem 0;
 }
 
 .inputs {
-  padding: 3.2rem 3.2rem 0;
+  padding: 0 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 }
 
 .input {
@@ -80,6 +84,7 @@ body {
   font-family: inherit;
   font-size: 2.4rem;
   font-weight: inherit;
+  caret-color: #26c2ae;
 }
 .input__element::-moz-placeholder {
   color: rgba(0, 71, 75, 0.35);
@@ -90,4 +95,102 @@ body {
 .input__element:focus {
   outline: none;
   border: 0.2rem solid #26c2ae;
+}
+
+.tips {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.tips__select-tip {
+  color: #5e7a7d;
+  font-size: 1.6rem;
+}
+.tips__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem 1.656rem;
+}
+.tips__tip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.8rem;
+  border-radius: 0.5rem;
+  background: #00474b;
+  color: #fff;
+  font-size: 2.4rem;
+}
+.tips__custom-tip {
+  width: 100%;
+  border-radius: 0.5rem;
+  background: #f3f9fa;
+  border: 0.2rem solid transparent;
+  text-align: right;
+  font-family: inherit;
+  font-size: 2.4rem;
+  font-weight: inherit;
+  padding-right: 1.733rem;
+  color: #00474b;
+  caret-color: #26c2ae;
+}
+.tips__custom-tip::-moz-placeholder {
+  color: #547878;
+}
+.tips__custom-tip::placeholder {
+  color: #547878;
+}
+.tips__custom-tip:focus {
+  outline: none;
+  border: 0.2rem solid #26c2ae;
+}
+
+.calculate {
+  padding: 0 2.4rem;
+}
+.calculate__container {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  padding: 3.7rem 2.2rem 2.4rem 2.4rem;
+  border-radius: 1.5rem;
+  background: #00474b;
+}
+.calculate__labels {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.calculate__labels-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.calculate__label-sublabel {
+  display: flex;
+  flex-direction: column;
+}
+.calculate__label {
+  color: #fff;
+  font-size: 1.6rem;
+}
+.calculate__sublabel {
+  color: #7f9d9f;
+  font-size: 1.3rem;
+}
+.calculate__value {
+  color: #26c2ae;
+  font-size: 3.2rem;
+  letter-spacing: -0.0667rem;
+}
+.calculate__reset-btn {
+  height: 4.8rem;
+  border-radius: 0.5rem;
+  background: #26c2ae;
+  border: none;
+  color: #00474b;
+  font-family: inherit;
+  font-size: 2rem;
+  font-weight: inherit;
+  text-transform: uppercase;
 }/*# sourceMappingURL=main.css.map */

@@ -74,11 +74,15 @@ body {
   border-radius: 2.5rem 2.5rem 0 0;
   background: $color-white;
   box-shadow: 0 3.2rem 4.3rem 0 rgba(79, 166, 175, 0.2);
+  padding: 3.2rem 0;
 }
 
 // ************ INPUTS ************
 .inputs {
-  padding: 3.2rem 3.2rem 0;
+  padding: 0 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 }
 
 // ************* INPUT *************
@@ -115,6 +119,7 @@ body {
     font-family: inherit;
     font-size: 2.4rem;
     font-weight: inherit;
+    caret-color: $color-topaz;
 
     &::placeholder {
       color: $color-sherpa-blue-35-percent;
@@ -124,5 +129,116 @@ body {
       outline: none;
       border: 0.2rem solid $color-topaz;
     }
+  }
+}
+
+// ************* TIPS *************
+.tips {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  &__select-tip {
+    color: $color-greyish-turquoise;
+    font-size: 1.6rem;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem 1.656rem;
+  }
+
+  &__tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4.8rem;
+    border-radius: 0.5rem;
+    background: $color-sherpa-blue;
+    color: $color-white;
+    font-size: 2.4rem;
+  }
+
+  &__custom-tip {
+    width: 100%;
+    border-radius: 0.5rem;
+    background: $color-black-squeeze;
+    border: 0.2rem solid transparent;
+    text-align: right;
+    font-family: inherit;
+    font-size: 2.4rem;
+    font-weight: inherit;
+    padding-right: 1.733rem;
+    color: $color-sherpa-blue;
+    caret-color: $color-topaz;
+
+    &::placeholder {
+      color: $color-beetle-green;
+    }
+
+    &:focus {
+      outline: none;
+      border: 0.2rem solid $color-topaz;
+    }
+  }
+}
+
+// *********** CALCULATE ***********
+.calculate {
+  padding: 0 2.4rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    padding: 3.7rem 2.2rem 2.4rem 2.4rem;
+    border-radius: 1.5rem;
+    background: $color-sherpa-blue;
+  }
+
+  &__labels {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__labels-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__label-sublabel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    color: $color-white;
+    font-size: 1.6rem;
+  }
+
+  &__sublabel {
+    color: $color-regent-grey;
+    font-size: 1.3rem;
+  }
+
+  &__value {
+    color: $color-topaz;
+    font-size: 3.2rem;
+    letter-spacing: -0.0667rem;
+  }
+
+  &__reset-btn {
+    height: 4.8rem;
+    border-radius: 0.5rem;
+    background: $color-topaz;
+    border: none;
+    color: $color-sherpa-blue;
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: inherit;
+    text-transform: uppercase;
   }
 }

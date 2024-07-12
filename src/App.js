@@ -75,13 +75,15 @@ function TipSelection() {
 function Calculate() {
   return (
     <div className="calculate">
-      <div className="calculate__labels">
-        <CalculateLabel label="Tip Amount" />
-        <CalculateLabel label="Total" />
+      <div className="calculate__container">
+        <div className="calculate__labels">
+          <CalculateLabel label="Tip Amount" />
+          <CalculateLabel label="Total" />
+        </div>
+        <button className="calculate__reset-btn" type="button">
+          Reset
+        </button>
       </div>
-      <button className="calculate__reset-btn" type="button">
-        Reset
-      </button>
     </div>
   );
 }
@@ -89,7 +91,7 @@ function Calculate() {
 function CalculateLabel({ label }) {
   return (
     <div className="calculate__labels-value">
-      <div className="calculate__labels">
+      <div className="calculate__label-sublabel">
         <span className="calculate__label">{label}</span>
         <span className="calculate__sublabel">/ person</span>
       </div>
