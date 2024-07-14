@@ -123,15 +123,16 @@ body {
 }
 .tips__custom-tip {
   width: 100%;
+  height: 4.8rem;
   border-radius: 0.5rem;
   background: #f3f9fa;
   border: 0.2rem solid transparent;
   text-align: right;
+  padding-right: 1.7rem;
+  color: #00474b;
   font-family: inherit;
   font-size: 2.4rem;
   font-weight: inherit;
-  padding-right: 1.733rem;
-  color: #00474b;
   caret-color: #26c2ae;
 }
 .tips__custom-tip::-moz-placeholder {
