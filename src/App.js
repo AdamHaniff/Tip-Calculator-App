@@ -1,10 +1,56 @@
 import { useState } from "react";
 
+// VARIABLES
 const percentages = ["5%", "10%", "15%", "25%", "50%"];
 
+// FUNCTIONS
 function convertPercentage(percentage) {
   const number = parseInt(percentage, 10);
   return isNaN(number) ? 0 : number / 100;
+}
+
+function convertInputs(tipSelected, bill, numberOfPeople, customTip) {
+  // Convert parameters to numbers
+  const adjustedTipSelected = Number(tipSelected);
+  const adjustedBill = Number(bill);
+  const adjustedNumberOfPeople = Number(numberOfPeople);
+  const safeNumberOfPeople =
+    adjustedNumberOfPeople === 0 ? 1 : adjustedNumberOfPeople;
+  const customTipPercentage = convertPercentage(customTip);
+
+  return {
+    adjustedTipSelected,
+    adjustedBill,
+    safeNumberOfPeople,
+    customTipPercentage,
+  };
+}
+
+function calculateTipAmount(
+  adjustedTipSelected,
+  adjustedBill,
+  safeNumberOfPeople,
+  customTipPercentage
+) {
+  const tipAmount =
+    (adjustedBill * (adjustedTipSelected || customTipPercentage || 0)) /
+    safeNumberOfPeople;
+
+  return tipAmount.toFixed(2);
+}
+
+function calculateTotalAmount(
+  adjustedTipSelected,
+  adjustedBill,
+  safeNumberOfPeople,
+  customTipPercentage
+) {
+  const totalAmount =
+    (adjustedBill +
+      adjustedBill * (adjustedTipSelected || customTipPercentage)) /
+    safeNumberOfPeople;
+
+  return totalAmount.toFixed(2);
 }
 
 export default function App() {
@@ -36,36 +82,31 @@ function CalculatorApp() {
   const [customTip, setCustomTip] = useState("");
 
   // VARIABLES
-  const customTipPercentage = convertPercentage(customTip);
+  const {
+    adjustedTipSelected,
+    adjustedBill,
+    safeNumberOfPeople,
+    customTipPercentage,
+  } = convertInputs(tipSelected, bill, numberOfPeople, customTip);
 
   const tipAmount = calculateTipAmount(
-    tipSelected,
-    bill,
-    numberOfPeople,
+    adjustedTipSelected,
+    adjustedBill,
+    safeNumberOfPeople,
     customTipPercentage
   );
 
-  const totalAmount = tipSelected
-    ? bill + (bill * tipSelected) / numberOfPeople
-    : bill + (bill * customTipPercentage) / numberOfPeople;
-
-  function calculateTipAmount(
-    tipSelected,
-    bill,
-    numberOfPeople,
+  const totalAmount = calculateTotalAmount(
+    adjustedTipSelected,
+    adjustedBill,
+    safeNumberOfPeople,
     customTipPercentage
-  ) {
-    // const tipAmount = tipSelected
-    //   ? (bill * tipSelected) / numberOfPeople
-    //   : (bill * customTipPercentage) / numberOfPeople;
-    // return Number.isNaN(tipAmount) ? "0.00" : tipAmount.toFixed(2);
-    // I DONT WANT TO HARDCODE THE 0.00 - WILL CHECK IF EACH VALUE EXISTS
-  }
+  );
 
   // HANDLER FUNCTIONS
   function handleChange(value, setter) {
     if (isNaN(Number(value))) return;
-    setter(value === "" ? "" : Number(value));
+    setter(value);
   }
 
   function handleBillChange(value) {
@@ -73,7 +114,12 @@ function CalculatorApp() {
   }
 
   function handlePeopleChange(value) {
-    handleChange(value, setNumberOfPeople);
+    // Allow only whole numbers or an empty string
+    const validValue = /^[0-9]*$/.test(value)
+      ? value
+      : value.replace(/[^0-9]/g, "");
+
+    handleChange(validValue, setNumberOfPeople);
   }
 
   function handleTipSelected(value) {
