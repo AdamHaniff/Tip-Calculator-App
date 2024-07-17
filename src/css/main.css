@@ -194,4 +194,8 @@ body {
   font-size: 2rem;
   font-weight: inherit;
   text-transform: uppercase;
+}
+
+.selected {
+  background: #26c2ae;
 }/*# sourceMappingURL=main.css.map */

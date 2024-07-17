@@ -188,15 +188,29 @@ function Input({ label, src, alt, value, onChange }) {
 }
 
 function TipSelection({ handleTipSelected, handleCustomTip, customTip }) {
+  const [tipDivSelected, setTipDivSelected] = useState(null);
+
+  function handleClick(percentage, i) {
+    if (tipDivSelected === i) {
+      // If the currently selected tip div is clicked again, deselect it and set 'tipSelected' back to null
+      setTipDivSelected(null);
+      handleTipSelected(null);
+    } else {
+      // Select the tip div that was just clicked and update 'tipSelected'
+      setTipDivSelected(i);
+      handleTipSelected(convertPercentage(percentage));
+    }
+  }
+
   return (
     <div className="tips">
       <span className="tips__select-tip">Select Tip %</span>
       <div className="tips__container">
-        {percentages.map((percentage) => (
+        {percentages.map((percentage, i) => (
           <div
             key={percentage}
-            className="tips__tip"
-            onClick={() => handleTipSelected(convertPercentage(percentage))}
+            className={`tips__tip ${tipDivSelected === i ? "selected" : ""}`}
+            onClick={() => handleClick(percentage, i)}
           >
             {percentage}
           </div>
