@@ -24,43 +24,29 @@ function convertInputs(tipSelected, bill, numberOfPeople, customTip) {
   };
 }
 
-function calculateTipAmount(
+function calculateAmount(
   adjustedTipSelected,
   adjustedBill,
   adjustedNumberOfPeople,
-  customTipPercentage
+  customTipPercentage,
+  isTipOnly
 ) {
-  let tipAmount;
+  let amount;
 
   if (adjustedNumberOfPeople === 0) {
-    tipAmount = 0;
+    // If 'numberOfPeople' is 0 or an empty string, don't calculate
+    amount = 0;
   } else {
-    tipAmount =
-      (adjustedBill * (adjustedTipSelected || customTipPercentage || 0)) /
-      adjustedNumberOfPeople;
+    const tipPercentage = adjustedTipSelected || customTipPercentage || 0;
+    if (isTipOnly) {
+      amount = (adjustedBill * tipPercentage) / adjustedNumberOfPeople;
+    } else {
+      amount =
+        (adjustedBill + adjustedBill * tipPercentage) / adjustedNumberOfPeople;
+    }
   }
 
-  return tipAmount.toFixed(2);
-}
-
-function calculateTotalAmount(
-  adjustedTipSelected,
-  adjustedBill,
-  adjustedNumberOfPeople,
-  customTipPercentage
-) {
-  let totalAmount;
-
-  if (adjustedNumberOfPeople === 0) {
-    totalAmount = 0;
-  } else {
-    totalAmount =
-      (adjustedBill +
-        adjustedBill * (adjustedTipSelected || customTipPercentage)) /
-      adjustedNumberOfPeople;
-  }
-
-  return totalAmount.toFixed(2);
+  return amount.toFixed(2);
 }
 
 export default function App() {
@@ -100,19 +86,29 @@ function CalculatorApp() {
     customTipPercentage,
   } = convertInputs(tipSelected, bill, numberOfPeople, customTip);
 
-  const tipAmount = calculateTipAmount(
+  const tipAmount = calculateAmount(
     adjustedTipSelected,
     adjustedBill,
     adjustedNumberOfPeople,
-    customTipPercentage
+    customTipPercentage,
+    true
   );
 
-  const totalAmount = calculateTotalAmount(
+  const totalAmount = calculateAmount(
     adjustedTipSelected,
     adjustedBill,
     adjustedNumberOfPeople,
-    customTipPercentage
+    customTipPercentage,
+    false
   );
+
+  const resetBtnProps = {
+    setBill,
+    setNumberOfPeople,
+    setTipSelected,
+    setCustomTip,
+    setTipDivSelected,
+  };
 
   const isNumberOfPeopleZero = numberOfPeople === "0";
 
@@ -186,7 +182,7 @@ function CalculatorApp() {
         />
       </Inputs>
 
-      <Calculate>
+      <Calculate resetBtn={<ResetBtn {...resetBtnProps} />}>
         <CalculateLabel label="Tip Amount" value={tipAmount} />
         <CalculateLabel label="Total" value={totalAmount} />
       </Calculate>
@@ -260,14 +256,12 @@ function TipSelection({ handleCustomTip, customTip, onClick, tipDivSelected }) {
   );
 }
 
-function Calculate({ children }) {
+function Calculate({ children, resetBtn }) {
   return (
     <div className="calculate">
       <div className="calculate__container">
         <div className="calculate__labels">{children}</div>
-        <button className="calculate__reset-btn" type="button">
-          Reset
-        </button>
+        {resetBtn}
       </div>
     </div>
   );
@@ -282,5 +276,31 @@ function CalculateLabel({ label, value }) {
       </div>
       <span className="calculate__value">${value}</span>
     </div>
+  );
+}
+
+function ResetBtn({
+  setBill,
+  setNumberOfPeople,
+  setTipSelected,
+  setCustomTip,
+  setTipDivSelected,
+}) {
+  function handleReset() {
+    setBill("");
+    setNumberOfPeople("");
+    setTipSelected(null);
+    setCustomTip("");
+    setTipDivSelected(null);
+  }
+
+  return (
+    <button
+      className="calculate__reset-btn"
+      type="button"
+      onClick={handleReset}
+    >
+      Reset
+    </button>
   );
 }
