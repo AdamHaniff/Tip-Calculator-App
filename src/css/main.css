@@ -59,9 +59,18 @@ body {
   flex-direction: column;
   gap: 0.6rem;
 }
+.input__label-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .input__label {
   color: #5e7a7d;
   font-size: 1.6rem;
+}
+.input__error {
+  color: #e17457;
+  font-size: 1.2rem;
 }
 .input__container {
   position: relative;
@@ -94,7 +103,6 @@ body {
 }
 .input__element:focus {
   outline: none;
-  border: 0.2rem solid #26c2ae;
 }
 
 .tips {
@@ -196,6 +204,13 @@ body {
   text-transform: uppercase;
 }
 
-.selected {
+.input__element--focused {
+  border: 0.2rem solid #26c2ae;
+}
+.input__element--error {
+  border: 0.2rem solid #e17052;
+}
+
+.tips__tip--selected {
   background: #26c2ae;
 }/*# sourceMappingURL=main.css.map */

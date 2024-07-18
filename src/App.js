@@ -14,14 +14,12 @@ function convertInputs(tipSelected, bill, numberOfPeople, customTip) {
   const adjustedTipSelected = Number(tipSelected);
   const adjustedBill = Number(bill);
   const adjustedNumberOfPeople = Number(numberOfPeople);
-  const safeNumberOfPeople =
-    adjustedNumberOfPeople === 0 ? 1 : adjustedNumberOfPeople;
   const customTipPercentage = convertPercentage(customTip);
 
   return {
     adjustedTipSelected,
     adjustedBill,
-    safeNumberOfPeople,
+    adjustedNumberOfPeople,
     customTipPercentage,
   };
 }
@@ -29,12 +27,18 @@ function convertInputs(tipSelected, bill, numberOfPeople, customTip) {
 function calculateTipAmount(
   adjustedTipSelected,
   adjustedBill,
-  safeNumberOfPeople,
+  adjustedNumberOfPeople,
   customTipPercentage
 ) {
-  const tipAmount =
-    (adjustedBill * (adjustedTipSelected || customTipPercentage || 0)) /
-    safeNumberOfPeople;
+  let tipAmount;
+
+  if (adjustedNumberOfPeople === 0) {
+    tipAmount = 0;
+  } else {
+    tipAmount =
+      (adjustedBill * (adjustedTipSelected || customTipPercentage || 0)) /
+      adjustedNumberOfPeople;
+  }
 
   return tipAmount.toFixed(2);
 }
@@ -42,13 +46,19 @@ function calculateTipAmount(
 function calculateTotalAmount(
   adjustedTipSelected,
   adjustedBill,
-  safeNumberOfPeople,
+  adjustedNumberOfPeople,
   customTipPercentage
 ) {
-  const totalAmount =
-    (adjustedBill +
-      adjustedBill * (adjustedTipSelected || customTipPercentage)) /
-    safeNumberOfPeople;
+  let totalAmount;
+
+  if (adjustedNumberOfPeople === 0) {
+    totalAmount = 0;
+  } else {
+    totalAmount =
+      (adjustedBill +
+        adjustedBill * (adjustedTipSelected || customTipPercentage)) /
+      adjustedNumberOfPeople;
+  }
 
   return totalAmount.toFixed(2);
 }
@@ -80,28 +90,31 @@ function CalculatorApp() {
   const [numberOfPeople, setNumberOfPeople] = useState("");
   const [tipSelected, setTipSelected] = useState(null);
   const [customTip, setCustomTip] = useState("");
+  const [tipDivSelected, setTipDivSelected] = useState(null);
 
   // VARIABLES
   const {
     adjustedTipSelected,
     adjustedBill,
-    safeNumberOfPeople,
+    adjustedNumberOfPeople,
     customTipPercentage,
   } = convertInputs(tipSelected, bill, numberOfPeople, customTip);
 
   const tipAmount = calculateTipAmount(
     adjustedTipSelected,
     adjustedBill,
-    safeNumberOfPeople,
+    adjustedNumberOfPeople,
     customTipPercentage
   );
 
   const totalAmount = calculateTotalAmount(
     adjustedTipSelected,
     adjustedBill,
-    safeNumberOfPeople,
+    adjustedNumberOfPeople,
     customTipPercentage
   );
+
+  const isNumberOfPeopleZero = numberOfPeople === "0";
 
   // HANDLER FUNCTIONS
   function handleChange(value, setter) {
@@ -131,6 +144,19 @@ function CalculatorApp() {
     if (isNaN(Number(value))) return;
     setCustomTip(value === "" ? "" : Number(value));
     setTipSelected(null);
+    setTipDivSelected(null);
+  }
+
+  function handleTipDivClick(percentage, i) {
+    if (tipDivSelected === i) {
+      // If the currently selected tip div is clicked again, deselect it and set 'tipSelected' back to null
+      setTipDivSelected(null);
+      handleTipSelected(null);
+    } else {
+      // Select the tip div that was just clicked and update 'tipSelected'
+      setTipDivSelected(i);
+      handleTipSelected(convertPercentage(percentage));
+    }
   }
 
   return (
@@ -142,11 +168,13 @@ function CalculatorApp() {
           alt="Dollar icon"
           value={bill}
           onChange={handleBillChange}
+          isError={false}
         />
         <TipSelection
-          handleTipSelected={handleTipSelected}
           handleCustomTip={handleCustomTip}
           customTip={customTip}
+          onClick={handleTipDivClick}
+          tipDivSelected={tipDivSelected}
         />
         <Input
           label="Number of People"
@@ -154,6 +182,7 @@ function CalculatorApp() {
           alt="Person icon"
           value={numberOfPeople}
           onChange={handlePeopleChange}
+          isError={isNumberOfPeopleZero}
         />
       </Inputs>
 
@@ -169,39 +198,41 @@ function Inputs({ children }) {
   return <div className="inputs">{children}</div>;
 }
 
-function Input({ label, src, alt, value, onChange }) {
+function Input({ label, src, alt, value, onChange, isError }) {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+
   return (
     <div className="input">
-      <label className="input__label">{label}</label>
+      <div className="input__label-error">
+        <label className="input__label">{label}</label>
+        {isError && <span className="input__error">Can't be zero</span>}
+      </div>
       <div className="input__container">
         <img className="input__icon" src={src} alt={alt} />
         <input
-          className="input__element"
+          className={`input__element ${
+            isError
+              ? "input__element--error"
+              : isFocused
+              ? "input__element--focused"
+              : ""
+          }`}
           type="text"
           placeholder="0"
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
       </div>
     </div>
   );
 }
 
-function TipSelection({ handleTipSelected, handleCustomTip, customTip }) {
-  const [tipDivSelected, setTipDivSelected] = useState(null);
-
-  function handleClick(percentage, i) {
-    if (tipDivSelected === i) {
-      // If the currently selected tip div is clicked again, deselect it and set 'tipSelected' back to null
-      setTipDivSelected(null);
-      handleTipSelected(null);
-    } else {
-      // Select the tip div that was just clicked and update 'tipSelected'
-      setTipDivSelected(i);
-      handleTipSelected(convertPercentage(percentage));
-    }
-  }
-
+function TipSelection({ handleCustomTip, customTip, onClick, tipDivSelected }) {
   return (
     <div className="tips">
       <span className="tips__select-tip">Select Tip %</span>
@@ -209,8 +240,10 @@ function TipSelection({ handleTipSelected, handleCustomTip, customTip }) {
         {percentages.map((percentage, i) => (
           <div
             key={percentage}
-            className={`tips__tip ${tipDivSelected === i ? "selected" : ""}`}
-            onClick={() => handleClick(percentage, i)}
+            className={`tips__tip ${
+              tipDivSelected === i ? "tips__tip--selected" : ""
+            }`}
+            onClick={() => onClick(percentage, i)}
           >
             {percentage}
           </div>

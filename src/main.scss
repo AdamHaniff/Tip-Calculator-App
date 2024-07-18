@@ -62,11 +62,6 @@ body {
   caret-color: $color-topaz;
 }
 
-@mixin input-focus-styles {
-  outline: none;
-  border: 0.2rem solid $color-topaz;
-}
-
 // ******** MOBILE LAYOUTS ********
 
 // ********* 375px LAYOUT *********
@@ -112,9 +107,20 @@ body {
   flex-direction: column;
   gap: 0.6rem;
 
+  &__label-error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__label {
     color: $color-greyish-turquoise;
     font-size: 1.6rem;
+  }
+
+  &__error {
+    color: $color-terra-cotta;
+    font-size: 1.2rem;
   }
 
   &__container {
@@ -136,7 +142,7 @@ body {
     }
 
     &:focus {
-      @include input-focus-styles;
+      outline: none;
     }
   }
 }
@@ -177,7 +183,8 @@ body {
     }
 
     &:focus {
-      @include input-focus-styles;
+      outline: none;
+      border: 0.2rem solid $color-topaz;
     }
   }
 }
@@ -242,6 +249,21 @@ body {
 }
 
 // ** CLASSES USED WITH JAVASCRIPT **
-.selected {
-  background: $color-topaz;
+
+// ************* INPUT *************
+.input {
+  &__element--focused {
+    border: 0.2rem solid $color-topaz;
+  }
+
+  &__element--error {
+    border: 0.2rem solid $color-sunrise-orange;
+  }
+}
+
+// ************** TIPS **************
+.tips {
+  &__tip--selected {
+    background: $color-topaz;
+  }
 }
