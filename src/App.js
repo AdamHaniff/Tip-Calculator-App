@@ -119,10 +119,13 @@ function CalculatorApp() {
   }
 
   function handleBillChange(value) {
+    if (Number(value) > 10000) return;
     handleChange(value, setBill);
   }
 
   function handlePeopleChange(value) {
+    if (Number(value) > 50) return;
+
     // Allow only whole numbers or an empty string
     const validValue = /^[0-9]*$/.test(value)
       ? value
@@ -138,6 +141,7 @@ function CalculatorApp() {
 
   function handleCustomTip(value) {
     if (isNaN(Number(value))) return;
+    if (Number(value) > 100) return;
     setCustomTip(value === "" ? "" : Number(value));
     setTipSelected(null);
     setTipDivSelected(null);
