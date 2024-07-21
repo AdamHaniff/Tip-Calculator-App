@@ -2,6 +2,9 @@ import { useState } from "react";
 
 // VARIABLES
 const percentages = ["5%", "10%", "15%", "25%", "50%"];
+const MAX_BILL_VALUE = 10000;
+const MAX_CUSTOM_TIP = 100;
+const MAX_NUMBER_PEOPLE = 50;
 
 // FUNCTIONS
 function convertPercentage(percentage) {
@@ -33,7 +36,11 @@ function calculateAmount(
 ) {
   let amount;
 
-  if (adjustedNumberOfPeople === 0) {
+  if (
+    adjustedNumberOfPeople === 0 ||
+    adjustedBill > MAX_BILL_VALUE ||
+    adjustedNumberOfPeople > MAX_NUMBER_PEOPLE
+  ) {
     // If 'numberOfPeople' is 0 or an empty string, don't calculate
     amount = 0;
   } else {
@@ -110,7 +117,25 @@ function CalculatorApp() {
     setTipDivSelected,
   };
 
-  const isNumberOfPeopleZero = numberOfPeople === "0";
+  // ERROR VARIABLES
+  const numberOfPeopleError = setNumberOfPeopleError();
+  const billExceedsMaxError =
+    adjustedBill > MAX_BILL_VALUE ? "Limit: $10,000" : false;
+
+  // FUNCTIONS
+  function setNumberOfPeopleError() {
+    let error = false;
+
+    if (numberOfPeople === "0") {
+      error = "Can't be zero";
+    }
+
+    if (adjustedNumberOfPeople > MAX_NUMBER_PEOPLE) {
+      error = "Limit: 50";
+    }
+
+    return error;
+  }
 
   // HANDLER FUNCTIONS
   function handleChange(value, setter) {
@@ -119,12 +144,12 @@ function CalculatorApp() {
   }
 
   function handleBillChange(value) {
-    if (Number(value) > 10000) return;
+    if (value.length > 5) return;
     handleChange(value, setBill);
   }
 
   function handlePeopleChange(value) {
-    if (Number(value) > 50) return;
+    if (value.length > 2) return;
 
     // Allow only whole numbers or an empty string
     const validValue = /^[0-9]*$/.test(value)
@@ -168,7 +193,7 @@ function CalculatorApp() {
           alt="Dollar icon"
           value={bill}
           onChange={handleBillChange}
-          isError={false}
+          error={billExceedsMaxError}
         />
         <TipSelection
           handleCustomTip={handleCustomTip}
@@ -182,7 +207,7 @@ function CalculatorApp() {
           alt="Person icon"
           value={numberOfPeople}
           onChange={handlePeopleChange}
-          isError={isNumberOfPeopleZero}
+          error={numberOfPeopleError}
         />
       </Inputs>
 
@@ -198,7 +223,7 @@ function Inputs({ children }) {
   return <div className="inputs">{children}</div>;
 }
 
-function Input({ label, src, alt, value, onChange, isError }) {
+function Input({ label, src, alt, value, onChange, error }) {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -208,13 +233,13 @@ function Input({ label, src, alt, value, onChange, isError }) {
     <div className="input">
       <div className="input__label-error">
         <label className="input__label">{label}</label>
-        {isError && <span className="input__error">Can't be zero</span>}
+        {error && <span className="input__error">{error}</span>}
       </div>
       <div className="input__container">
         <img className="input__icon" src={src} alt={alt} />
         <input
           className={`input__element ${
-            isError
+            error
               ? "input__element--error"
               : isFocused
               ? "input__element--focused"
