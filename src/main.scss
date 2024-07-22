@@ -175,6 +175,12 @@ body {
     font-size: 2.4rem;
   }
 
+  &__custom-tip-error {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
   &__custom-tip {
     @include input-styles;
 
@@ -184,8 +190,13 @@ body {
 
     &:focus {
       outline: none;
-      border: 0.2rem solid $color-topaz;
     }
+  }
+
+  &__error {
+    margin-left: auto;
+    color: $color-terra-cotta;
+    font-size: 1.2rem;
   }
 }
 
@@ -265,5 +276,13 @@ body {
 .tips {
   &__tip--selected {
     background: $color-topaz;
+  }
+
+  &__custom-tip--focused {
+    border: 0.2rem solid $color-topaz;
+  }
+
+  &__custom-tip--error {
+    border: 0.2rem solid $color-sunrise-orange;
   }
 }

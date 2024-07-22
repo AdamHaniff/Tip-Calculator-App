@@ -35,13 +35,14 @@ function calculateAmount(
   isTipOnly
 ) {
   let amount;
-
-  if (
+  const customTip = customTipPercentage * 100;
+  const skipCalculation =
     adjustedNumberOfPeople === 0 ||
     adjustedBill > MAX_BILL_VALUE ||
-    adjustedNumberOfPeople > MAX_NUMBER_PEOPLE
-  ) {
-    // If 'numberOfPeople' is 0 or an empty string, don't calculate
+    adjustedNumberOfPeople > MAX_NUMBER_PEOPLE ||
+    customTip > MAX_CUSTOM_TIP;
+
+  if (skipCalculation) {
     amount = 0;
   } else {
     const tipPercentage = adjustedTipSelected || customTipPercentage || 0;
@@ -121,6 +122,8 @@ function CalculatorApp() {
   const numberOfPeopleError = setNumberOfPeopleError();
   const billExceedsMaxError =
     adjustedBill > MAX_BILL_VALUE ? "Limit: $10,000" : false;
+  const customTipExceedsMaxError =
+    Number(customTip) > MAX_CUSTOM_TIP ? "Limit: 100%" : false;
 
   // FUNCTIONS
   function setNumberOfPeopleError() {
@@ -166,7 +169,7 @@ function CalculatorApp() {
 
   function handleCustomTip(value) {
     if (isNaN(Number(value))) return;
-    if (Number(value) > 100) return;
+    if (value.length > 3) return;
     setCustomTip(value === "" ? "" : Number(value));
     setTipSelected(null);
     setTipDivSelected(null);
@@ -200,6 +203,7 @@ function CalculatorApp() {
           customTip={customTip}
           onClick={handleTipDivClick}
           tipDivSelected={tipDivSelected}
+          error={customTipExceedsMaxError}
         />
         <Input
           label="Number of People"
@@ -257,7 +261,18 @@ function Input({ label, src, alt, value, onChange, error }) {
   );
 }
 
-function TipSelection({ handleCustomTip, customTip, onClick, tipDivSelected }) {
+function TipSelection({
+  handleCustomTip,
+  customTip,
+  onClick,
+  tipDivSelected,
+  error,
+}) {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+
   return (
     <div className="tips">
       <span className="tips__select-tip">Select Tip %</span>
@@ -273,13 +288,24 @@ function TipSelection({ handleCustomTip, customTip, onClick, tipDivSelected }) {
             {percentage}
           </div>
         ))}
-        <input
-          className="tips__custom-tip"
-          type="text"
-          placeholder="Custom"
-          value={customTip}
-          onChange={(e) => handleCustomTip(e.target.value)}
-        />
+        <div className="tips__custom-tip-error">
+          <input
+            className={`tips__custom-tip ${
+              error
+                ? "tips__custom-tip--error"
+                : isFocused
+                ? "tips__custom-tip--focused"
+                : ""
+            }`}
+            type="text"
+            placeholder="Custom"
+            value={customTip}
+            onChange={(e) => handleCustomTip(e.target.value)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
+          {error && <span className="tips__error">{error}</span>}
+        </div>
       </div>
     </div>
   );
