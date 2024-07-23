@@ -187,6 +187,7 @@ body {
 .calculate__label-sublabel {
   display: flex;
   flex-direction: column;
+  margin-right: 2.4rem;
 }
 .calculate__label {
   color: #fff;
@@ -212,20 +213,18 @@ body {
   font-weight: inherit;
   text-transform: uppercase;
 }
+.calculate__reset-btn:focus {
+  outline: 0.2rem solid #fff;
+}
 
-.input__element--focused {
+.focused {
   border: 0.2rem solid #26c2ae;
 }
-.input__element--error {
+
+.error {
   border: 0.2rem solid #e17052;
 }
 
-.tips__tip--selected {
+.selected {
   background: #26c2ae;
-}
-.tips__custom-tip--focused {
-  border: 0.2rem solid #26c2ae;
-}
-.tips__custom-tip--error {
-  border: 0.2rem solid #e17052;
 }/*# sourceMappingURL=main.css.map */

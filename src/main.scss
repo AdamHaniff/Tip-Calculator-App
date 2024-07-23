@@ -62,6 +62,17 @@ body {
   caret-color: $color-topaz;
 }
 
+@mixin input-error-styles {
+  color: $color-terra-cotta;
+  font-size: 1.2rem;
+}
+
+@mixin input-error-container-styles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
 // ******** MOBILE LAYOUTS ********
 
 // ********* 375px LAYOUT *********
@@ -103,9 +114,7 @@ body {
 
 // ************* INPUT *************
 .input {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+  @include input-error-container-styles;
 
   &__label-error {
     display: flex;
@@ -119,8 +128,7 @@ body {
   }
 
   &__error {
-    color: $color-terra-cotta;
-    font-size: 1.2rem;
+    @include input-error-styles;
   }
 
   &__container {
@@ -176,9 +184,7 @@ body {
   }
 
   &__custom-tip-error {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+    @include input-error-container-styles;
   }
 
   &__custom-tip {
@@ -195,8 +201,7 @@ body {
 
   &__error {
     margin-left: auto;
-    color: $color-terra-cotta;
-    font-size: 1.2rem;
+    @include input-error-styles;
   }
 }
 
@@ -228,6 +233,7 @@ body {
   &__label-sublabel {
     display: flex;
     flex-direction: column;
+    margin-right: 2.4rem;
   }
 
   &__label {
@@ -256,33 +262,22 @@ body {
     font-size: 2rem;
     font-weight: inherit;
     text-transform: uppercase;
+
+    &:focus {
+      outline: 0.2rem solid $color-white;
+    }
   }
 }
 
 // ** CLASSES USED WITH JAVASCRIPT **
-
-// ************* INPUT *************
-.input {
-  &__element--focused {
-    border: 0.2rem solid $color-topaz;
-  }
-
-  &__element--error {
-    border: 0.2rem solid $color-sunrise-orange;
-  }
+.focused {
+  border: 0.2rem solid $color-topaz;
 }
 
-// ************** TIPS **************
-.tips {
-  &__tip--selected {
-    background: $color-topaz;
-  }
+.error {
+  border: 0.2rem solid $color-sunrise-orange;
+}
 
-  &__custom-tip--focused {
-    border: 0.2rem solid $color-topaz;
-  }
-
-  &__custom-tip--error {
-    border: 0.2rem solid $color-sunrise-orange;
-  }
+.selected {
+  background: $color-topaz;
 }

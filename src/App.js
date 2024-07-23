@@ -147,7 +147,15 @@ function CalculatorApp() {
   }
 
   function handleBillChange(value) {
-    if (value.length > 5) return;
+    // Allow only two decimal places
+    if (value.includes(".")) {
+      const parts = value.split(".");
+      if (parts[1].length > 2) return;
+    }
+
+    // Restrict length if there is no decimal point
+    if (!value.includes(".") && value.length > 5) return;
+
     handleChange(value, setBill);
   }
 
@@ -243,11 +251,7 @@ function Input({ label, src, alt, value, onChange, error }) {
         <img className="input__icon" src={src} alt={alt} />
         <input
           className={`input__element ${
-            error
-              ? "input__element--error"
-              : isFocused
-              ? "input__element--focused"
-              : ""
+            error ? "error" : isFocused ? "focused" : ""
           }`}
           type="text"
           placeholder="0"
@@ -280,9 +284,7 @@ function TipSelection({
         {percentages.map((percentage, i) => (
           <div
             key={percentage}
-            className={`tips__tip ${
-              tipDivSelected === i ? "tips__tip--selected" : ""
-            }`}
+            className={`tips__tip ${tipDivSelected === i ? "selected" : ""}`}
             onClick={() => onClick(percentage, i)}
           >
             {percentage}
@@ -291,11 +293,7 @@ function TipSelection({
         <div className="tips__custom-tip-error">
           <input
             className={`tips__custom-tip ${
-              error
-                ? "tips__custom-tip--error"
-                : isFocused
-                ? "tips__custom-tip--focused"
-                : ""
+              error ? "error" : isFocused ? "focused" : ""
             }`}
             type="text"
             placeholder="Custom"
@@ -341,7 +339,11 @@ function ResetBtn({
   setCustomTip,
   setTipDivSelected,
 }) {
-  function handleReset() {
+  function handleReset(e) {
+    // Remove focus
+    e.target.blur();
+
+    // Reset all state back to their default values
     setBill("");
     setNumberOfPeople("");
     setTipSelected(null);
