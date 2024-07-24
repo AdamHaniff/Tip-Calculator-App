@@ -66,7 +66,7 @@ body {
 }
 .input__label {
   color: #5e7a7d;
-  font-size: 1.6rem;
+  font-size: clamp(1.3rem, 1.3rem + 0.0545454545 * (100vw - 32rem), 1.6rem);
 }
 .input__error {
   color: #e17457;
@@ -147,6 +147,7 @@ body {
   font-size: 2.4rem;
   font-weight: inherit;
   caret-color: #26c2ae;
+  padding-right: clamp(1.5rem, 1.5rem + 0.0363636364 * (100vw - 32rem), 1.7rem);
 }
 .tips__custom-tip::-moz-placeholder {
   color: #547878;
@@ -212,11 +213,20 @@ body {
   font-size: 2rem;
   font-weight: inherit;
   text-transform: uppercase;
+  transition: transform 0.3s ease;
 }
 .calculate__reset-btn:focus {
   outline: 0.2rem solid #fff;
 }
+.calculate__reset-btn:active {
+  transform: translateY(0.2rem);
+}
 
+@media only screen and (max-width: 23.4375em) {
+  .calculate__value {
+    font-size: 2.6rem;
+  }
+}
 .focused {
   border: 0.2rem solid #26c2ae;
 }

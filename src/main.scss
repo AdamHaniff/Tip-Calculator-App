@@ -124,7 +124,11 @@ body {
 
   &__label {
     color: $color-greyish-turquoise;
-    font-size: 1.6rem;
+    font-size: clamp(
+      1.3rem,
+      calc(1.3rem + (0.3rem / 5.5rem) * (100vw - 32rem)),
+      1.6rem
+    );
   }
 
   &__error {
@@ -189,6 +193,11 @@ body {
 
   &__custom-tip {
     @include input-styles;
+    padding-right: clamp(
+      1.5rem,
+      calc(1.5rem + (0.2rem / 5.5rem) * (100vw - 32rem)),
+      1.7rem
+    );
 
     &::placeholder {
       color: $color-beetle-green;
@@ -262,9 +271,24 @@ body {
     font-size: 2rem;
     font-weight: inherit;
     text-transform: uppercase;
+    transition: transform 0.3s ease;
 
     &:focus {
       outline: 0.2rem solid $color-white;
+    }
+
+    &:active {
+      transform: translateY(0.2rem);
+    }
+  }
+}
+
+// ****** 320px - 374px LAYOUT ******
+@media only screen and (max-width: 23.4375em) {
+  // ********** CALCULATE **********
+  .calculate {
+    &__value {
+      font-size: 2.6rem;
     }
   }
 }

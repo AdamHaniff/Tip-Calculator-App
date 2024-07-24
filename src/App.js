@@ -340,9 +340,6 @@ function ResetBtn({
   setTipDivSelected,
 }) {
   function handleReset(e) {
-    // Remove focus
-    e.target.blur();
-
     // Reset all state back to their default values
     setBill("");
     setNumberOfPeople("");
