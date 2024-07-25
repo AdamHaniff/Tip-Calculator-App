@@ -25,6 +25,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4.086rem;
 }
 
@@ -45,6 +46,7 @@ body {
   background: #fff;
   box-shadow: 0 3.2rem 4.3rem 0 rgba(79, 166, 175, 0.2);
   padding: 3.2rem 0;
+  max-width: 37.5rem;
 }
 
 .inputs {
@@ -112,7 +114,7 @@ body {
 }
 .tips__select-tip {
   color: #5e7a7d;
-  font-size: 1.6rem;
+  font-size: clamp(1.3rem, 1.3rem + 0.0545454545 * (100vw - 32rem), 1.6rem);
 }
 .tips__container {
   display: grid;
@@ -225,6 +227,29 @@ body {
 @media only screen and (max-width: 23.4375em) {
   .calculate__value {
     font-size: 2.6rem;
+  }
+}
+@media only screen and (min-width: 48em) {
+  .app {
+    flex-direction: row;
+    max-width: 70rem;
+    padding: 3.2rem;
+    border-radius: 2.5rem;
+  }
+  .inputs {
+    padding: 0;
+    max-width: 31.1rem;
+  }
+  .calculate {
+    padding: 0;
+  }
+  .calculate__container {
+    height: 100%;
+    gap: initial;
+    justify-content: space-between;
+  }
+  .calculate__labels {
+    gap: 2.5rem;
   }
 }
 .focused {
