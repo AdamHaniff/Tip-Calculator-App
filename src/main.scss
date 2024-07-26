@@ -270,7 +270,7 @@ body {
   &__reset-btn {
     height: 4.8rem;
     border-radius: 0.5rem;
-    background: $color-topaz;
+    background: $color-dark-aqua;
     border: none;
     color: $color-sherpa-blue;
     font-family: inherit;
@@ -306,7 +306,8 @@ body {
   // ******** CALCULATOR APP ********
   .app {
     flex-direction: row;
-    max-width: 70rem;
+    max-width: initial;
+    width: 70rem;
     padding: 3.2rem;
     border-radius: 2.5rem;
   }
@@ -320,11 +321,13 @@ body {
   // ********** CALCULATE **********
   .calculate {
     padding: 0;
+    flex: 1;
 
     &__container {
       height: 100%;
       gap: initial;
       justify-content: space-between;
+      padding: 4rem 2.2rem 4rem 2.4rem;
     }
 
     &__labels {

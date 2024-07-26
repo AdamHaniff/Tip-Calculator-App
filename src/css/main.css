@@ -208,7 +208,7 @@ body {
 .calculate__reset-btn {
   height: 4.8rem;
   border-radius: 0.5rem;
-  background: #26c2ae;
+  background: #0d686d;
   border: none;
   color: #00474b;
   font-family: inherit;
@@ -232,7 +232,8 @@ body {
 @media only screen and (min-width: 48em) {
   .app {
     flex-direction: row;
-    max-width: 70rem;
+    max-width: initial;
+    width: 70rem;
     padding: 3.2rem;
     border-radius: 2.5rem;
   }
@@ -242,11 +243,13 @@ body {
   }
   .calculate {
     padding: 0;
+    flex: 1;
   }
   .calculate__container {
     height: 100%;
     gap: initial;
     justify-content: space-between;
+    padding: 4rem 2.2rem 4rem 2.4rem;
   }
   .calculate__labels {
     gap: 2.5rem;
