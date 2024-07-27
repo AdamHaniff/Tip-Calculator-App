@@ -230,16 +230,24 @@ body {
   }
 }
 @media only screen and (min-width: 48em) {
+  .container {
+    gap: clamp(4.086rem, 4.086rem + 47 * (100vw - 76.8rem) / 672, 8.786rem);
+  }
+  .header {
+    padding-top: clamp(5rem, 5rem + 113 * (100vw - 76.8rem) / 672, 16.3rem);
+  }
   .app {
     flex-direction: row;
     max-width: initial;
-    width: 70rem;
+    width: clamp(70rem, 70rem + 220 * (100vw - 76.8rem) / 672, 92rem);
     padding: 3.2rem;
     border-radius: 2.5rem;
   }
   .inputs {
     padding: 0;
-    max-width: 31.1rem;
+    max-width: 37.9rem;
+    flex: 1;
+    gap: clamp(3.2rem, 3.2rem + 8 * (100vw - 76.8rem) / 672, 4rem);
   }
   .calculate {
     padding: 0;
@@ -250,6 +258,7 @@ body {
     gap: initial;
     justify-content: space-between;
     padding: 4rem 2.2rem 4rem 2.4rem;
+    max-width: 41.3rem;
   }
   .calculate__labels {
     gap: 2.5rem;
@@ -263,6 +272,6 @@ body {
   border: 0.2rem solid #e17052;
 }
 
-.selected {
+.bg-topaz {
   background: #26c2ae;
 }/*# sourceMappingURL=main.css.map */

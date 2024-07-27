@@ -87,6 +87,13 @@ function CalculatorApp() {
   const [tipDivSelected, setTipDivSelected] = useState(null);
 
   // VARIABLES
+  const isDefaultState =
+    bill === "" &&
+    numberOfPeople === "" &&
+    tipSelected === null &&
+    customTip === "" &&
+    tipDivSelected === null;
+
   const {
     adjustedTipSelected,
     adjustedBill,
@@ -116,6 +123,7 @@ function CalculatorApp() {
     setTipSelected,
     setCustomTip,
     setTipDivSelected,
+    isDefaultState,
   };
 
   // ERROR VARIABLES
@@ -284,7 +292,7 @@ function TipSelection({
         {percentages.map((percentage, i) => (
           <div
             key={percentage}
-            className={`tips__tip ${tipDivSelected === i ? "selected" : ""}`}
+            className={`tips__tip ${tipDivSelected === i ? "bg-topaz" : ""}`}
             onClick={() => onClick(percentage, i)}
           >
             {percentage}
@@ -338,6 +346,7 @@ function ResetBtn({
   setTipSelected,
   setCustomTip,
   setTipDivSelected,
+  isDefaultState,
 }) {
   function handleReset(e) {
     // Reset all state back to their default values
@@ -350,7 +359,7 @@ function ResetBtn({
 
   return (
     <button
-      className="calculate__reset-btn"
+      className={`calculate__reset-btn ${!isDefaultState ? "bg-topaz" : ""}`}
       type="button"
       onClick={handleReset}
     >
