@@ -73,6 +73,31 @@ body {
   gap: 0.6rem;
 }
 
+// *********** VARIABLES ***********
+$calculate-container-padding-right: clamp(
+  2.2rem,
+  calc(2.2rem + (40 - 22) * ((100vw - 76.8rem) / (1440 - 768))),
+  4rem
+);
+
+$calculate-container-padding-left: clamp(
+  2.4rem,
+  calc(2.4rem + (40 - 24) * ((100vw - 76.8rem) / (1440 - 768))),
+  4rem
+);
+
+$inputs-padding-top: clamp(
+  3.2rem,
+  calc(3.2rem + (45 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
+  4.5rem
+);
+
+$inputs-padding-bottom-left: clamp(
+  3.2rem,
+  calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
+  4.8rem
+);
+
 // ******** MOBILE LAYOUTS ********
 
 // ********* 375px LAYOUT *********
@@ -329,14 +354,20 @@ body {
       calc(70rem + (920 - 700) * ((100vw - 76.8rem) / (1440 - 768))),
       92rem
     );
-    padding: 3.2rem;
+    padding: 0;
     border-radius: 2.5rem;
+    gap: clamp(
+      3.2rem,
+      calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
+      4.8rem
+    );
   }
 
   // ************ INPUTS ************
   .inputs {
-    padding: 0;
-    max-width: 37.9rem;
+    padding: $inputs-padding-top 0 $inputs-padding-bottom-left
+      $inputs-padding-bottom-left;
+    max-width: 42.7rem;
     flex: 1;
     gap: clamp(
       3.2rem,
@@ -347,19 +378,28 @@ body {
 
   // ********** CALCULATE **********
   .calculate {
-    padding: 0;
+    padding: 3.2rem 3.2rem 3.2rem 0;
     flex: 1;
 
     &__container {
       height: 100%;
       gap: initial;
       justify-content: space-between;
-      padding: 4rem 2.2rem 4rem 2.4rem;
+      padding: 4rem $calculate-container-padding-right 4rem
+        $calculate-container-padding-left;
       max-width: 41.3rem;
     }
 
     &__labels {
       gap: 2.5rem;
+    }
+
+    &__value {
+      font-size: clamp(
+        3.2rem,
+        calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
+        4.8rem
+      );
     }
   }
 }
