@@ -74,25 +74,43 @@ body {
 }
 
 // *********** VARIABLES ***********
-$calculate-container-padding-right: clamp(
+$responsive-12px-16px: clamp(
+  1.2rem,
+  calc(1.2rem + (16 - 12) * ((100vw - 76.8rem) / (1440 - 768))),
+  1.6rem
+);
+
+$responsive-13px-16px: clamp(
+  1.3rem,
+  calc(1.3rem + (0.3rem / 5.5rem) * (100vw - 32rem)),
+  1.6rem
+);
+
+$responsive-22px-40px: clamp(
   2.2rem,
   calc(2.2rem + (40 - 22) * ((100vw - 76.8rem) / (1440 - 768))),
   4rem
 );
 
-$calculate-container-padding-left: clamp(
+$responsive-24px-40px: clamp(
   2.4rem,
   calc(2.4rem + (40 - 24) * ((100vw - 76.8rem) / (1440 - 768))),
   4rem
 );
 
-$inputs-padding-top: clamp(
+$responsive-30px-42px: clamp(
+  3rem,
+  calc(3rem + (42 - 30) * ((100vw - 76.8rem) / (1440 - 768))),
+  4.2rem
+);
+
+$responsive-32px-45px: clamp(
   3.2rem,
   calc(3.2rem + (45 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
   4.5rem
 );
 
-$inputs-padding-bottom-left: clamp(
+$responsive-32px-48px: clamp(
   3.2rem,
   calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
   4.8rem
@@ -151,11 +169,7 @@ $inputs-padding-bottom-left: clamp(
 
   &__label {
     color: $color-greyish-turquoise;
-    font-size: clamp(
-      1.3rem,
-      calc(1.3rem + (0.3rem / 5.5rem) * (100vw - 32rem)),
-      1.6rem
-    );
+    font-size: $responsive-13px-16px;
   }
 
   &__error {
@@ -194,11 +208,7 @@ $inputs-padding-bottom-left: clamp(
 
   &__select-tip {
     color: $color-greyish-turquoise;
-    font-size: clamp(
-      1.3rem,
-      calc(1.3rem + (0.3rem / 5.5rem) * (100vw - 32rem)),
-      1.6rem
-    );
+    font-size: $responsive-13px-16px;
   }
 
   &__container {
@@ -356,17 +366,12 @@ $inputs-padding-bottom-left: clamp(
     );
     padding: 0;
     border-radius: 2.5rem;
-    gap: clamp(
-      3.2rem,
-      calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
-      4.8rem
-    );
+    gap: $responsive-32px-48px;
   }
 
   // ************ INPUTS ************
   .inputs {
-    padding: $inputs-padding-top 0 $inputs-padding-bottom-left
-      $inputs-padding-bottom-left;
+    padding: $responsive-32px-45px 0 $responsive-32px-48px $responsive-32px-48px;
     max-width: 42.7rem;
     flex: 1;
     gap: clamp(
@@ -374,6 +379,20 @@ $inputs-padding-bottom-left: clamp(
       calc(3.2rem + (40 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
       4rem
     );
+  }
+
+  // ************ INPUT ************
+  .input {
+    &__error {
+      font-size: $responsive-12px-16px;
+    }
+  }
+
+  // ************* TIPS *************
+  .tips {
+    &__error {
+      font-size: $responsive-12px-16px;
+    }
   }
 
   // ********** CALCULATE **********
@@ -385,8 +404,7 @@ $inputs-padding-bottom-left: clamp(
       height: 100%;
       gap: initial;
       justify-content: space-between;
-      padding: 4rem $calculate-container-padding-right 4rem
-        $calculate-container-padding-left;
+      padding: 4rem $responsive-22px-40px 4rem $responsive-24px-40px;
       max-width: 41.3rem;
     }
 
@@ -395,11 +413,30 @@ $inputs-padding-bottom-left: clamp(
     }
 
     &__value {
-      font-size: clamp(
-        3.2rem,
-        calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
-        4.8rem
+      font-size: $responsive-30px-42px;
+
+      letter-spacing: clamp(
+        -0.1rem,
+        calc(-0.0667rem + (-1 + 0.667) * ((100vw - 76.8rem) / (1440 - 768))),
+        -0.0667rem
       );
+    }
+  }
+}
+
+// ********* DESKTOP LAYOUT *********
+
+// ********* 1440px LAYOUT *********
+@media only screen and (min-width: 90em) {
+  // ************* TIPS *************
+  .tips {
+    &__container {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem 1.4rem;
+    }
+
+    &__custom-tip {
+      padding-right: 1.5rem;
     }
   }
 }

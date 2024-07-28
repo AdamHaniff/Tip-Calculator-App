@@ -250,6 +250,12 @@ body {
     flex: 1;
     gap: clamp(3.2rem, 3.2rem + 8 * (100vw - 76.8rem) / 672, 4rem);
   }
+  .input__error {
+    font-size: clamp(1.2rem, 1.2rem + 4 * (100vw - 76.8rem) / 672, 1.6rem);
+  }
+  .tips__error {
+    font-size: clamp(1.2rem, 1.2rem + 4 * (100vw - 76.8rem) / 672, 1.6rem);
+  }
   .calculate {
     padding: 3.2rem 3.2rem 3.2rem 0;
     flex: 1;
@@ -265,7 +271,17 @@ body {
     gap: 2.5rem;
   }
   .calculate__value {
-    font-size: clamp(3.2rem, 3.2rem + 16 * (100vw - 76.8rem) / 672, 4.8rem);
+    font-size: clamp(3rem, 3rem + 12 * (100vw - 76.8rem) / 672, 4.2rem);
+    letter-spacing: clamp(-0.1rem, -0.0667rem + -0.333 * (100vw - 76.8rem) / 672, -0.0667rem);
+  }
+}
+@media only screen and (min-width: 90em) {
+  .tips__container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem 1.4rem;
+  }
+  .tips__custom-tip {
+    padding-right: 1.5rem;
   }
 }
 .focused {
