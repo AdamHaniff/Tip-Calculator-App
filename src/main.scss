@@ -116,6 +116,12 @@ $responsive-32px-48px: clamp(
   4.8rem
 );
 
+$responsive-50px-163px: clamp(
+  5rem,
+  calc(5rem + (163 - 50) * ((100vw - 76.8rem) / (1440 - 768))),
+  16.3rem
+);
+
 // ******** MOBILE LAYOUTS ********
 
 // ********* 375px LAYOUT *********
@@ -344,15 +350,13 @@ $responsive-32px-48px: clamp(
       calc(4.086rem + (87.86 - 40.86) * ((100vw - 76.8rem) / (1440 - 768))),
       8.786rem
     );
+
+    padding-bottom: $responsive-50px-163px;
   }
 
   // ************ HEADER ************
   .header {
-    padding-top: clamp(
-      5rem,
-      calc(5rem + (163 - 50) * ((100vw - 76.8rem) / (1440 - 768))),
-      16.3rem
-    );
+    padding-top: $responsive-50px-163px;
   }
 
   // ******** CALCULATOR APP ********
@@ -452,4 +456,20 @@ $responsive-32px-48px: clamp(
 
 .bg-topaz {
   background: $color-topaz;
+}
+
+.larger-font {
+  font-size: clamp(
+    3.2rem,
+    calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
+    4.8rem
+  );
+}
+
+.responsive-margin-right {
+  margin-right: clamp(
+    2.4rem,
+    calc(2.4rem + (40 - 24) * ((100vw - 76.8rem) / (1440 - 768))),
+    4rem
+  );
 }
