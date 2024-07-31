@@ -292,7 +292,7 @@ function TipSelection({
         {percentages.map((percentage, i) => (
           <div
             key={percentage}
-            className={`tips__tip ${tipDivSelected === i ? "bg-topaz" : ""}`}
+            className={`tips__tip ${tipDivSelected === i ? "selected" : ""}`}
             onClick={() => onClick(percentage, i)}
           >
             {percentage}

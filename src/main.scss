@@ -445,6 +445,43 @@ $responsive-50px-163px: clamp(
   }
 }
 
+// ****** DESKTOP HOVER STATES ******
+
+// ******* 992px MEDIA QUERY *******
+@media only screen and (min-width: 62em) {
+  // ************ INPUT ************
+  .input {
+    &__container:hover {
+      cursor: pointer;
+
+      & * {
+        cursor: inherit;
+      }
+    }
+  }
+
+  // ************* TIPS *************
+  .tips {
+    &__tip:hover {
+      cursor: pointer;
+      background: $color-water-leaf;
+      color: $color-sherpa-blue;
+    }
+
+    &__custom-tip:hover {
+      cursor: pointer;
+    }
+  }
+
+  // ********** CALCULATE **********
+  .calculate {
+    &__reset-btn:hover {
+      cursor: pointer;
+      background: $color-water-leaf;
+    }
+  }
+}
+
 // ** CLASSES USED WITH JAVASCRIPT **
 .focused {
   border: 0.2rem solid $color-topaz;
@@ -456,6 +493,11 @@ $responsive-50px-163px: clamp(
 
 .bg-topaz {
   background: $color-topaz;
+}
+
+.selected {
+  background: $color-topaz !important;
+  color: $color-sherpa-blue !important;
 }
 
 .larger-font {

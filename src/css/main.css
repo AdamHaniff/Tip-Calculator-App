@@ -285,6 +285,26 @@ body {
     padding-right: 1.5rem;
   }
 }
+@media only screen and (min-width: 62em) {
+  .input__container:hover {
+    cursor: pointer;
+  }
+  .input__container:hover * {
+    cursor: inherit;
+  }
+  .tips__tip:hover {
+    cursor: pointer;
+    background: #9fe8df;
+    color: #00474b;
+  }
+  .tips__custom-tip:hover {
+    cursor: pointer;
+  }
+  .calculate__reset-btn:hover {
+    cursor: pointer;
+    background: #9fe8df;
+  }
+}
 .focused {
   border: 0.2rem solid #26c2ae;
 }
@@ -295,6 +315,11 @@ body {
 
 .bg-topaz {
   background: #26c2ae;
+}
+
+.selected {
+  background: #26c2ae !important;
+  color: #00474b !important;
 }
 
 .larger-font {
