@@ -218,6 +218,9 @@ body {
   transition: transform 0.3s ease;
 }
 .calculate__reset-btn:focus {
+  outline: none;
+}
+.calculate__reset-btn:focus-visible {
   outline: 0.2rem solid #fff;
 }
 .calculate__reset-btn:active {
@@ -300,11 +303,12 @@ body {
   .tips__custom-tip:hover {
     cursor: pointer;
   }
-  .calculate__reset-btn:hover {
-    cursor: pointer;
-    background: #9fe8df;
-  }
 }
+.hovered {
+  cursor: pointer;
+  background: #9fe8df !important;
+}
+
 .focused {
   border: 0.2rem solid #26c2ae;
 }

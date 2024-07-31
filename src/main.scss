@@ -321,6 +321,10 @@ $responsive-50px-163px: clamp(
     transition: transform 0.3s ease;
 
     &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
       outline: 0.2rem solid $color-white;
     }
 
@@ -472,17 +476,14 @@ $responsive-50px-163px: clamp(
       cursor: pointer;
     }
   }
-
-  // ********** CALCULATE **********
-  .calculate {
-    &__reset-btn:hover {
-      cursor: pointer;
-      background: $color-water-leaf;
-    }
-  }
 }
 
 // ** CLASSES USED WITH JAVASCRIPT **
+.hovered {
+  cursor: pointer;
+  background: $color-water-leaf !important;
+}
+
 .focused {
   border: 0.2rem solid $color-topaz;
 }
