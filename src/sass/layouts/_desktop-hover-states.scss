@@ -1,0 +1,12 @@
+// ****** DESKTOP HOVER STATES ******
+
+// ******* 992px MEDIA QUERY *******
+@media only screen and (min-width: 62em) {
+  // ************* TIPS *************
+  .tips {
+    &__tip:hover {
+      background: $color-water-leaf;
+      color: $color-sherpa-blue;
+    }
+  }
+}

@@ -1,0 +1,229 @@
+// ******** MOBILE LAYOUTS ********
+
+// ********* 375px LAYOUT *********
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.086rem;
+}
+
+// ************ HEADER ************
+.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+
+  &__logo {
+    display: block;
+  }
+}
+
+// ******** CALCULATOR APP ********
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  border-radius: 2.5rem 2.5rem 0 0;
+  background: $color-white;
+  box-shadow: 0 3.2rem 4.3rem 0 rgba(79, 166, 175, 0.2);
+  padding: 3.2rem 0;
+  max-width: 37.5rem;
+}
+
+// ************ INPUTS ************
+.inputs {
+  padding: 0 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+// ************* INPUT *************
+.input {
+  @include input-error-container-styles;
+
+  &__label-error {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__label {
+    color: $color-greyish-turquoise;
+    font-size: $responsive-13px-16px;
+  }
+
+  &__error {
+    @include input-error-styles;
+  }
+
+  &__container {
+    position: relative;
+    cursor: pointer;
+
+    & * {
+      cursor: inherit;
+    }
+  }
+
+  &__icon {
+    display: block;
+    position: absolute;
+    top: 1.687rem;
+    left: 1.926rem;
+  }
+
+  &__element {
+    @include input-styles;
+
+    &::placeholder {
+      color: $color-sherpa-blue-35-percent;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// ************* TIPS *************
+.tips {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  &__select-tip {
+    color: $color-greyish-turquoise;
+    font-size: $responsive-13px-16px;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem 1.656rem;
+  }
+
+  &__tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4.8rem;
+    border-radius: 0.5rem;
+    background: $color-sherpa-blue;
+    color: $color-white;
+    font-size: 2.4rem;
+    cursor: pointer;
+  }
+
+  &__custom-tip-error {
+    @include input-error-container-styles;
+  }
+
+  &__custom-tip {
+    @include input-styles;
+    padding-right: clamp(
+      1.5rem,
+      calc(1.5rem + (0.2rem / 5.5rem) * (100vw - 32rem)),
+      1.7rem
+    );
+    cursor: pointer;
+
+    &::placeholder {
+      color: $color-beetle-green;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__error {
+    margin-left: auto;
+    @include input-error-styles;
+  }
+}
+
+// *********** CALCULATE ***********
+.calculate {
+  padding: 0 2.4rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    padding: 3.7rem 2.2rem 2.4rem 2.4rem;
+    border-radius: 1.5rem;
+    background: $color-sherpa-blue;
+  }
+
+  &__labels {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__labels-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__label-sublabel {
+    display: flex;
+    flex-direction: column;
+    margin-right: 2.4rem;
+  }
+
+  &__label {
+    color: $color-white;
+    font-size: 1.6rem;
+  }
+
+  &__sublabel {
+    color: $color-regent-grey;
+    font-size: 1.3rem;
+  }
+
+  &__value {
+    color: $color-topaz;
+    font-size: 3.2rem;
+    letter-spacing: -0.0667rem;
+  }
+
+  &__reset-btn {
+    height: 4.8rem;
+    border-radius: 0.5rem;
+    background: $color-dark-aqua;
+    border: none;
+    color: $color-sherpa-blue;
+    font-family: inherit;
+    font-size: 2rem;
+    font-weight: inherit;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 0.2rem solid $color-white;
+    }
+
+    &:active {
+      transform: translateY(0.2rem);
+    }
+  }
+}
+
+// ****** 320px - 374px LAYOUT ******
+@media only screen and (max-width: 23.4375em) {
+  // ********** CALCULATE **********
+  .calculate {
+    &__value {
+      font-size: 2.6rem;
+    }
+  }
+}

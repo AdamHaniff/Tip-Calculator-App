@@ -1,0 +1,71 @@
+// ********* DESIGN SYSTEM *********
+
+// ************ COLORS ************
+$color-jagged-ice: #c5e4e7;
+$color-white: #fff;
+$color-greyish-turquoise: #5e7a7d;
+$color-black-squeeze: #f3f9fa;
+$color-sherpa-blue: #00474b;
+$color-sherpa-blue-35-percent: rgba(0, 71, 75, 0.35);
+$color-topaz: #26c2ae;
+$color-beetle-green: #547878;
+$color-regent-grey: #7f9d9f;
+$color-dark-aqua: #0d686d;
+$color-water-leaf: #9fe8df;
+$color-terra-cotta: #e17457;
+$color-sunrise-orange: #e17052;
+
+// ********** FONT-FAMILY **********
+$font-space-mono: "Space Mono", monospace;
+
+// ********* FONT-WEIGHTS *********
+$fw-700: 700;
+
+// *********** VARIABLES ***********
+$responsive-12px-16px: clamp(
+  1.2rem,
+  calc(1.2rem + (16 - 12) * ((100vw - 76.8rem) / (1440 - 768))),
+  1.6rem
+);
+
+$responsive-13px-16px: clamp(
+  1.3rem,
+  calc(1.3rem + (0.3rem / 5.5rem) * (100vw - 32rem)),
+  1.6rem
+);
+
+$responsive-22px-40px: clamp(
+  2.2rem,
+  calc(2.2rem + (40 - 22) * ((100vw - 76.8rem) / (1440 - 768))),
+  4rem
+);
+
+$responsive-24px-40px: clamp(
+  2.4rem,
+  calc(2.4rem + (40 - 24) * ((100vw - 76.8rem) / (1440 - 768))),
+  4rem
+);
+
+$responsive-30px-42px: clamp(
+  3rem,
+  calc(3rem + (42 - 30) * ((100vw - 76.8rem) / (1440 - 768))),
+  4.2rem
+);
+
+$responsive-32px-45px: clamp(
+  3.2rem,
+  calc(3.2rem + (45 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
+  4.5rem
+);
+
+$responsive-32px-48px: clamp(
+  3.2rem,
+  calc(3.2rem + (48 - 32) * ((100vw - 76.8rem) / (1440 - 768))),
+  4.8rem
+);
+
+$responsive-50px-163px: clamp(
+  5rem,
+  calc(5rem + (163 - 50) * ((100vw - 76.8rem) / (1440 - 768))),
+  16.3rem
+);

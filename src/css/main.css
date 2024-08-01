@@ -76,6 +76,10 @@ body {
 }
 .input__container {
   position: relative;
+  cursor: pointer;
+}
+.input__container * {
+  cursor: inherit;
 }
 .input__icon {
   display: block;
@@ -130,6 +134,7 @@ body {
   background: #00474b;
   color: #fff;
   font-size: 2.4rem;
+  cursor: pointer;
 }
 .tips__custom-tip-error {
   display: flex;
@@ -150,6 +155,7 @@ body {
   font-weight: inherit;
   caret-color: #26c2ae;
   padding-right: clamp(1.5rem, 1.5rem + 0.0363636364 * (100vw - 32rem), 1.7rem);
+  cursor: pointer;
 }
 .tips__custom-tip::-moz-placeholder {
   color: #547878;
@@ -216,6 +222,7 @@ body {
   font-weight: inherit;
   text-transform: uppercase;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 .calculate__reset-btn:focus {
   outline: none;
@@ -289,23 +296,12 @@ body {
   }
 }
 @media only screen and (min-width: 62em) {
-  .input__container:hover {
-    cursor: pointer;
-  }
-  .input__container:hover * {
-    cursor: inherit;
-  }
   .tips__tip:hover {
-    cursor: pointer;
     background: #9fe8df;
     color: #00474b;
   }
-  .tips__custom-tip:hover {
-    cursor: pointer;
-  }
 }
 .hovered {
-  cursor: pointer;
   background: #9fe8df !important;
 }
 
