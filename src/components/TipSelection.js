@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const percentages = ["5%", "10%", "15%", "25%", "50%"];
+
 export default function TipSelection({
   handleCustomTip,
   customTip,

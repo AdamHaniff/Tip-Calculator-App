@@ -5,6 +5,18 @@ import Calculate from "./Calculate";
 import CalculateLabel from "./CalculateLabel";
 import ResetBtn from "./ResetBtn";
 
+import {
+  MAX_BILL_VALUE,
+  MAX_CUSTOM_TIP,
+  MAX_NUMBER_PEOPLE,
+} from "../js/config";
+
+import {
+  convertPercentage,
+  convertInputs,
+  calculateAmount,
+} from "../js/helpers";
+
 import { useState } from "react";
 
 export default function CalculatorApp() {
